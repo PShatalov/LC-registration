@@ -12,10 +12,11 @@ body {
   margin-top: 25px;
   background-color: #ffffff;
 }
+
 .row {
   margin-bottom: 19px;
 }
-.mobile {
+.mobile-logo {
   display: none;
 }
 .header-text{
@@ -113,15 +114,11 @@ input[type="text"],input[type="email"],input[type="password"]{
   height: 40px;
   color: #29c0d1;
   font-size: 14px;
+  cursor: pointer;
 
   &:hover {
     background-color: #29c0d1;
-    border: 1px solid #29c0d1;
-    width: 150px;
-    height: 40px;
     color: #ffffff;
-    font-size: 14px;
-    cursor: pointer;
   }
 }
 .error-msg {
@@ -130,6 +127,7 @@ input[type="text"],input[type="email"],input[type="password"]{
   padding: 0;
   color: #5f6062;
   font-size: 16px;
+  font-family: $common-font-family;
 }
 .error
 {
@@ -168,5 +166,70 @@ input[type="text"],input[type="email"],input[type="password"]{
     z-index: 0;
     top: -13px;
     left: 8px;
+  }
+}
+
+@media (max-width: 320px) {
+  .row {
+    margin-bottom: 0;
+  }
+  .desktop-logo {
+    display: none;
+  }
+  .mobile-logo {
+    display: block;
+  }
+  .logo {
+    margin-left: 11px;
+    padding-right: 0;
+    + .header-text-container {
+      padding-left: 11px;
+    }
+  }
+  .container {
+    margin: 25px 0 65px 0;
+  }
+  .header-text{
+    font-size: 19px;
+    margin-top: 14px;
+  }
+  input[type="text"],input[type="email"],input[type="password"] {
+    width: 150px;
+    height: 20px;
+    font-size: 9px;
+    padding-left: 8px;
+    &::-webkit-input-placeholder {
+      font-size: 9px;
+    }
+  }
+  .input-label {
+    font-size: 10px;
+  }
+  .regBtn {
+    width: 72px;
+    height: 20px;
+    font-size: 8px;
+    margin-top: 14px;
+  }
+  .error {
+    width: 158px;
+    height: 20px;
+  }
+  .error-msg {
+    font-size: 9px;
+    margin-top: 4px;
+    margin-left: 5px;
+    font-family: $common-font-family;
+  }
+  form {
+    padding: 0 11px 11px;
+  }
+  .checkboxBase, .checkBoxActive {
+    width: 10px;
+    height: 10px;
+    margin-left: 13px;
+  }
+  .checkboxWrapper {
+    padding-right: 0;
   }
 }
