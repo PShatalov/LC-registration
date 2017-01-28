@@ -1,3 +1,172 @@
+$common-font-family : "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$common-font-color : #8b8d92;
+
+main {
+  display: block;
+}
 body {
-  background-color: #808080;
+  background-color: #dcdcdc;
+  margin: 0;
+}
+.form-container {
+  margin-top: 25px;
+  background-color: #ffffff;
+}
+.row {
+  margin-bottom: 19px;
+}
+.mobile {
+  display: none;
+}
+.header-text{
+  display: block;
+  font-size: 40px;
+  margin-top: 7px;
+  color: $common-font-color;
+  font-family: $common-font-family;
+}
+.container {
+  margin: 77px 151px;
+}
+
+form {
+  padding: 25px 50px;
+}
+.form-container {
+  margin-top: 13px;
+}
+.input-label {
+  font-size: 16px;
+  margin-top: 12px;
+  display: block;
+  color: $common-font-color;
+  font-family: $common-font-family;
+}
+input[type="text"],input[type="email"],input[type="password"]{
+  width: 300px;
+  height: 38px;
+  border: 1px solid #d6d6d7;
+  padding-left: 20px;
+  color: #5f6062;
+  &::-webkit-input-placeholder {
+    font-size: 14px;
+    color: $common-font-color;
+  }
+  &:focus {
+    border: 1px solid #29c0d1;
+  }
+  .hasError {
+    border: 1px solid #d9534f !important;
+    background-color: #fadddc !important;
+  }
+}
+.regForm {
+ &:first-child {
+   padding-top: 19px;
+ }
+  div.row {
+    margin-left: 25px;
+    margin-bottom: 19px;
+  }
+}
+.checkboxBase {
+  height: 20px;
+  cursor: pointer;
+  width: 20px;
+  display: inline-flex;
+  border: 1px solid #d6d6d7;
+}
+.checkBoxContainer {
+  margin-left: 0 !important;
+  margin-bottom: 0 !important;
+
+  .row {
+    padding-left: 4px;
+      .col-xs-1.col-md-1 {
+        padding-left: 0;
+      }
+  }
+}
+
+.checkBoxContainer .input-label{
+  margin-top: 2px !important;
+}
+.checkBoxLabelContainer {
+  margin-top: 2px;
+}
+.checkBoxActive {
+  cursor: pointer;
+  height: 20px;
+  width: 20px;
+  background-color: #29c0d1;
+  border: 1px solid #29c0d1;
+}
+.checkArrow {
+  color: #ffffff;
+  font-size: 16px;
+  margin-left: 4px;
+}
+.regBtn {
+  background: transparent;
+  border: 1px solid #29c0d1;
+  width: 150px;
+  height: 40px;
+  color: #29c0d1;
+  font-size: 14px;
+
+  &:hover {
+    background-color: #29c0d1;
+    border: 1px solid #29c0d1;
+    width: 150px;
+    height: 40px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+  }
+}
+.error-msg {
+  margin-top: 9px;
+  margin-left: 9px;
+  padding: 0;
+  color: #5f6062;
+  font-size: 16px;
+}
+.error
+{
+  position: relative;
+  width: 322px;
+  margin-top: 12px;
+  height: 35px;
+  padding: 0;
+  background: #FFFFFF;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+  border: #d9534f solid 1px;
+
+  &:after {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 11px 12px;
+    border-color: #FFFFFF transparent;
+    display: block;
+    width: 0;
+    z-index: 1;
+    top: -12px;
+    left: 8px;
+  }
+
+  &:before {
+    content: '';
+    position: absolute;
+    border-style: solid;
+    border-width: 0 11px 12px;
+    border-color: #d9534f transparent;
+    display: block;
+    width: 0;
+    z-index: 0;
+    top: -13px;
+    left: 8px;
+  }
 }
