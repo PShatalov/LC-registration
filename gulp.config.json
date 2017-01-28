@@ -1,0 +1,18 @@
+{
+  "client": "./web/client/",
+  "html": "./web/client/**/*.html",
+  "vendorjs": [
+    "./bower_components/angular/angular.min.js",
+    "./bower_components/angular-route/angular-route.min.js",
+    "./bower_components/angular-resource/angular-resource.min.js",
+    "./bower_components/angular-cookies/angular-cookies.min.js"
+  ],
+  "scss": [
+    "./web/client/styles/**/*.scss"
+  ],
+  "js": [
+    "./web/client/app/**/*module*.js",
+    "./web/client/app/**/*.js"
+  ],
+  "build": "./web/build/"
+}
