@@ -1,0 +1,10 @@
+@media all and (-ms-high-contrast:none)
+{
+    *::-ms-backdrop, .logo { display: flex } /* IE11 */
+    .checkBoxContainer{
+        margin-left: 38px !important;
+    }
+    .regBtnContainer {
+        margin-left: 25px !important;
+    }
+}
