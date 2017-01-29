@@ -23,10 +23,13 @@
         }
         function submitRegForm(){
             $scope.formErrors = {};
-            var validationError = Auth.validateForm($scope.formModel);
-            if(validationError){
-                $scope.formErrors = validationError;
-            }
+            Auth.validateForm($scope.formModel, function(validationResult){
+                console.log(validationResult, 'VALIDATION!!!');
+                if(validationResult){
+                    $scope.formErrors = validationResult;
+                }
+            });
+
         }
     }
 })();
