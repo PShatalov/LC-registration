@@ -12,7 +12,9 @@ body {
   margin-top: 25px;
   background-color: #ffffff;
 }
-
+.hidden {
+  display: none !important;
+}
 .row {
   margin-bottom: 19px;
 }

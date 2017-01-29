@@ -6,6 +6,17 @@
         .controller('registrationController', registrationController);
 
     function registrationController($scope) {
-        console.log('Hello From Reg Controller!!!');
+        $scope.showPass = false;
+
+        $scope.showPassword = showPassword;
+        $scope.submitRegForm = submitRegForm;
+
+        function showPassword(showPass){
+            console.log(showPass);
+            $scope.showPass = showPass;
+        }
+        function submitRegForm(){
+            console.log('submit');
+        }
     }
 })();
