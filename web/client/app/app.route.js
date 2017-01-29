@@ -8,7 +8,7 @@
                 .when("/", {
                     templateUrl: "/client/app/regForm/regForm.html",
                     controller: "registrationController"
-                }).when("/hello/:email", {
+                }).when("/hello", {
                     templateUrl: "/client/app/hello/hello.html",
                     controller: "helloController"
                 }).otherwise({

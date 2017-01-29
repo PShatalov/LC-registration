@@ -57,17 +57,20 @@ angular
             var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
             if(regex.test(birthday)){
                 var splitedBirthday = birthday.split('/');
-                if(splitedBirthday[0] < 1 || splitedBirthday[0] > 31){
+                var day = parseInt(splitedBirthday[0]);
+                var month = parseInt(splitedBirthday[1]);
+                var year = splitedBirthday[2];
+                if(day < 1 || day > 31){
                     return {birthday: ERROR_BIRTHDAY_FORMAT};
                 }
-                if(splitedBirthday[1] < 1 || splitedBirthday[1] > 12){
+                if(month < 1 || month > 12){
                     return {birthday: ERROR_BIRTHDAY_FORMAT};
                 }
-                if(splitedBirthday[2].length !== 4){
+                if(year.length !== 4){
                     return {birthday: ERROR_BIRTHDAY_FORMAT};
                 }
                 var dateNow = new Date();
-                var checkDate = new Date(birthday[1]+'/'+birthday[0]+'/'+birthday[2]);
+                var checkDate = new Date(splitedBirthday[1]+'/'+splitedBirthday[0]+'/'+splitedBirthday[2]);
 
                 if(checkDate == 'Invalid Date'){
                     return {birthday: ERROR_BIRTHDAY_FUTURE};

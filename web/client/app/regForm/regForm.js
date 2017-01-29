@@ -5,7 +5,7 @@
         .module('lcRegistration.regForm')
         .controller('registrationController',registrationController);
 
-    function registrationController($scope, $http, Auth) {
+    function registrationController($scope, $http, $cookies, Auth) {
         $scope.showPass = false;
         $scope.formModel = {
             email: '',
@@ -28,7 +28,8 @@
                  }else{
                      $http.post('/create-user', $scope.formModel).then(
                          function(data){
-                             location.href = '#/hello/'+data.data.email;
+                             $cookies.put('email', data.data.email);
+                             location.href = '#/hello';
                          },
                          function(){
                              alert('Duplicate Email!')
