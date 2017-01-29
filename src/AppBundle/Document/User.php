@@ -5,7 +5,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as MongoDB;
 
 /**
  * @MongoDB\Document
- */
+ * */
 class User
 {
     /**
@@ -15,12 +15,11 @@ class User
 
     /**
      * @MongoDB\Field(type="string")
-     * @MongoDB\Index(unique=true)
      */
     protected $email;
 
     /**
-     * @MongoDB\Field(type="date")
+     * @MongoDB\Field(type="string")
      */
     protected $birthday;
 
@@ -30,9 +29,7 @@ class User
     protected $password;
 
     /**
-     * Get id
-     *
-     * @return id $id
+     * @return mixed
      */
     public function getId()
     {
@@ -40,21 +37,15 @@ class User
     }
 
     /**
-     * Set email
-     *
-     * @param string $email
-     * @return self
+     * @param mixed $id
      */
-    public function setEmail($email)
+    public function setId($id)
     {
-        $this->email = $email;
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get email
-     *
-     * @return string $email
+     * @return mixed
      */
     public function getEmail()
     {
@@ -62,21 +53,15 @@ class User
     }
 
     /**
-     * Set birthday
-     *
-     * @param date $birthday
-     * @return self
+     * @param mixed $email
      */
-    public function setBirthday($birthday)
+    public function setEmail($email)
     {
-        $this->birthday = $birthday;
-        return $this;
+        $this->email = $email;
     }
 
     /**
-     * Get birthday
-     *
-     * @return date $birthday
+     * @return mixed
      */
     public function getBirthday()
     {
@@ -84,24 +69,26 @@ class User
     }
 
     /**
-     * Set password
-     *
-     * @param string $password
-     * @return self
+     * @param mixed $birthday
      */
-    public function setPassword($password)
+    public function setBirthday($birthday)
     {
-        $this->password = md5($password);
-        return $this;
+        $this->birthday = $birthday;
     }
 
     /**
-     * Get password
-     *
-     * @return string $password
+     * @return mixed
      */
     public function getPassword()
     {
         return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = md5($password);
     }
 }

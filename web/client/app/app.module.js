@@ -19,7 +19,8 @@
         /*
          * Feature areas
          */
-        'lcRegistration.regForm'
+        'lcRegistration.regForm',
+        'lcRegistration.hello'
     ]);
 
 })();
