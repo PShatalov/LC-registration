@@ -18,18 +18,17 @@
         $scope.submitRegForm = submitRegForm;
 
         function showPassword(showPass){
-            console.log(showPass, 'UNDEFINED');
             $scope.showPass = showPass;
         }
         function submitRegForm(){
             $scope.formErrors = {};
-            Auth.validateForm($scope.formModel, function(validationResult){
-                console.log(validationResult, 'VALIDATION!!!');
-                if(validationResult){
-                    $scope.formErrors = validationResult;
-                }
-            });
-
+             Auth.validateForm($scope.formModel, function(validationResult){
+                 if(validationResult){
+                     $scope.formErrors = validationResult;
+                 }else{
+                     console.log('Send request to server!!!')
+                 }
+             });
         }
     }
 })();

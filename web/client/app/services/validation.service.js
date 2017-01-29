@@ -4,23 +4,35 @@ angular
 
     function Auth() {
         var ERROR_REQUIRED_FIELD = 'Sorry, this field is required';
-        var ERROR_EMAIL = 'Please, check your email';
-        var ERROR_BIRTHDAY_FORMAT = 'Please, check your birthday date. Required format is dd/mm/yyyy';
-        var ERROR_BIRTHDAY_FUTURE = 'Please, check your birthday date.';
-        var ERROR_PASSWORD_NOT_EQUALS = 'Sorry, passwords are not equals.';
+        var ERROR_EMAIL = 'Please, check your email format';
+        var ERROR_BIRTHDAY_FORMAT = 'Sorry, required date format is dd/mm/yyyy';
+        var ERROR_BIRTHDAY_FUTURE = 'Please, check your birthday date';
+        var ERROR_PASSWORD_NOT_EQUALS = 'Sorry, passwords are not equals';
 
         var self = this;
         this.validateForm = function(formModel, callback){
-            try {
-                self
-                    .checkRequiredFields(formModel, callback)
-                    .checkEmail(formModel.email, callback)
-                    .checkBirthday(formModel.birthday, callback)
-                    .checkPasswords(formModel.password, formModel.repassword, callback);
-            } catch (e){
+            var validateErrors = {};
+            var requiredFieldsError = self.checkRequiredFields(formModel);
+            var emailError = self.checkEmail(formModel.email);
+            if(emailError){
+                Object.assign(validateErrors, emailError);
             }
+            var birthdayError = self.checkBirthday(formModel.birthday);
+            if(birthdayError){
+                Object.assign(validateErrors, birthdayError);
+            }
+            var passwordsError = self.checkPasswords(formModel.password, formModel.repassword);
+            if(passwordsError){
+                Object.assign(validateErrors, passwordsError);
+            }
+            if(requiredFieldsError){
+                Object.assign(validateErrors, requiredFieldsError);
+            }
+            var result = Object.keys(validateErrors).length > 0 ? validateErrors : false;
+            callback(result);
         };
-        this.checkRequiredFields = function(formModel, callback){
+
+        this.checkRequiredFields = function(formModel){
             var requiredErrors = {};
             Object.keys(formModel).map(function(formField){
                 if(formModel[formField].length == 0){
@@ -28,40 +40,53 @@ angular
                 }
             });
             if(Object.keys(requiredErrors).length > 0){
-                return callback(requiredErrors);
+                return requiredErrors;
             }else{
-                return self;
+                return false;
             }
         };
-        this.checkEmail = function(email, callback){
+        this.checkEmail = function(email){
             var regex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if(regex.test(email)){
-                return self;
+                return false;
             }else{
-                return callback({email: ERROR_EMAIL});
+                return {email: ERROR_EMAIL};
             }
         };
-        this.checkBirthday = function(birthday, callback){
-            var regex = str.match(/(\d+)(-|\/)(\d+)(?:-|\/)(?:(\d+)\s+(\d+):(\d+)(?::(\d+))?(?:\.(\d+))?)?/);
+        this.checkBirthday = function(birthday){
+            var regex = /^(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)\d\d$/;
             if(regex.test(birthday)){
+                var splitedBirthday = birthday.split('/');
+                if(splitedBirthday[0] < 1 || splitedBirthday[0] > 31){
+                    return {birthday: ERROR_BIRTHDAY_FORMAT};
+                }
+                if(splitedBirthday[1] < 1 || splitedBirthday[1] > 12){
+                    return {birthday: ERROR_BIRTHDAY_FORMAT};
+                }
+                if(splitedBirthday[2].length !== 4){
+                    return {birthday: ERROR_BIRTHDAY_FORMAT};
+                }
                 var dateNow = new Date();
-                var checkDate = new Date(birthday);
-                console.log(dateNow, checkDate, 'DATES');
+                var checkDate = new Date(birthday[1]+'/'+birthday[0]+'/'+birthday[2]);
+
+                if(checkDate == 'Invalid Date'){
+                    return {birthday: ERROR_BIRTHDAY_FUTURE};
+                }
                 if(checkDate > dateNow){
-                    return callback({birthday: ERROR_BIRTHDAY_FUTURE})
+                    return {birthday: ERROR_BIRTHDAY_FUTURE};
                 }else{
-                    return self;
+                    return false;
                 }
             }else{
-                return callback({birthday: ERROR_BIRTHDAY_FORMAT});
+                return {birthday: ERROR_BIRTHDAY_FORMAT};
             }
         };
 
-        this.checkPasswords = function(pass, repass, callback){
+        this.checkPasswords = function(pass, repass){
             if(String(pass).valueOf() !== String(repass).valueOf()){
-                callback(ERROR_PASSWORD_NOT_EQUALS);
+                return {password: ERROR_PASSWORD_NOT_EQUALS, repassword: ERROR_PASSWORD_NOT_EQUALS};
             }else{
-                return self;
+                return false;
             }
         }
     }
