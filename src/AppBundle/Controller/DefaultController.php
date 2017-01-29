@@ -44,7 +44,7 @@ class DefaultController extends Controller
 
                 return new JsonResponse(['email' => $user->getEmail()]);
             } else {
-                return new JsonResponse(['message' => 'User already exists'], 409);
+                return new JsonResponse(['message' => 'Sorry, email already in use'], 409);
             }
 
         } catch (Exception $e){

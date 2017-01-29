@@ -31,8 +31,9 @@
                              $cookies.put('email', data.data.email);
                              location.href = '#/hello';
                          },
-                         function(){
-                             alert('Duplicate Email!')
+                         function(data){
+                             $scope.formErrors['email'] = data.data.message;
+                             console.log($scope.formErrors['email']);
                          }
                      );
                  }
