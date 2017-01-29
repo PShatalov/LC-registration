@@ -13,6 +13,7 @@
             password: '',
             repassword: ''
         };
+        $scope.formErrors = {};
         $scope.showPassword = showPassword;
         $scope.submitRegForm = submitRegForm;
 
@@ -21,9 +22,11 @@
             $scope.showPass = showPass;
         }
         function submitRegForm(){
-            var result = Auth.validateForm($scope.formModel);
-
-            console.log(result);
+            $scope.formErrors = {};
+            var validationError = Auth.validateForm($scope.formModel);
+            if(validationError){
+                $scope.formErrors = validationError;
+            }
         }
     }
 })();
