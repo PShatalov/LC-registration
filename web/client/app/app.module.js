@@ -15,6 +15,7 @@
          * but this is easier to maintain.
          */
         'lcRegistration.core',
+        'AuthService',
         /*
          * Feature areas
          */
