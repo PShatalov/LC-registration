@@ -13,3 +13,7 @@ To run application do the following:
 5) Run backend using console command - php app/console serve:run
 
 That's all. Application will be available by this url http://localhost:8000
+
+Browsers support:
+
+IE - 11, because of this version still supported by Microsoft, modern Chrome and Firefox.
